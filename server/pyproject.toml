@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "v1-dev-server"
+version = "0.1.0"
+description = ""
+authors = ["Akash NP <akashnp1998@gmail.com>"]
+readme = "README.md"
+packages = [{include = "v1"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.0.299"
+fastapi = "^0.103.1"
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
+openai = "^0.28.0"
+python-decouple = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
