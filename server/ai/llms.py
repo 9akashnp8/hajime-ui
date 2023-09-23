@@ -8,6 +8,6 @@ class OpenAI(LCOpenAI):
     & actual ai response
     """
     def predict(self, text: str, *, stop: Sequence[str] | None = None, **kwargs: Any) -> str:
-        if kwargs.get('mock'):
+        if kwargs.pop('mock'):
             return "<div><button class='bg-red-500'>Submit</button></div>"
         return super().predict(text, stop=stop, **kwargs)
