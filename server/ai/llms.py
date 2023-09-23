@@ -1,5 +1,7 @@
-from typing import Any, Optional, Sequence
+from typing import Any, Sequence
 from langchain.llms import OpenAI as LCOpenAI
+
+from utils import mock_generated_html
 
 class OpenAI(LCOpenAI):
     """
@@ -9,5 +11,5 @@ class OpenAI(LCOpenAI):
     """
     def predict(self, text: str, *, stop: Sequence[str] | None = None, **kwargs: Any) -> str:
         if kwargs.pop('mock'):
-            return "<div><button class='bg-red-500'>Submit</button></div>"
+            return mock_generated_html
         return super().predict(text, stop=stop, **kwargs)

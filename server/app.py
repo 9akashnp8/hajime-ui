@@ -18,9 +18,10 @@ app.add_middleware(
 )
 llm = OpenAI(openai_api_key=config("OPENAI_API_KEY"))
 
-@app.get("/")
+@app.post("/modify")
 def get_root(mock: bool):
     result = llm.predict(modify_element_prompt, mock=mock)
+    return {"result": result}
 
 @app.post('/generate')
 def generate_element(payload: GenerateElementPayload, mock: bool = True):
