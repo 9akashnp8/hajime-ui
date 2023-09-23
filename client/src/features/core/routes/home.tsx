@@ -6,7 +6,7 @@ import { store } from "../store";
 export default function Home() {
     const { dispatch } = store;
     const navigate = useNavigate();
-    const [ prompt, setPrompt ] = useState("");
+    const [prompt, setPrompt] = useState("");
 
     async function handlePromptSubmit(event: React.FormEvent) {
         event.preventDefault();
@@ -18,7 +18,7 @@ export default function Home() {
             },
             body: JSON.stringify({ prompt })
         })
-        const aiResponse = await response.json(); 
+        const aiResponse = await response.json();
         dispatch.generatedElement.set(aiResponse["result"])
         navigate("/canvas")
     }
@@ -26,6 +26,7 @@ export default function Home() {
         <div className="h-1/2 grid place-content-center" >
             <form className="flex gap-5" onSubmit={handlePromptSubmit}>
                 <input
+                    required
                     type="text"
                     name="prompt"
                     id="prompt"

@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import { store } from './features/core/store.ts'
 import Root from './features/core/routes/root.tsx'
 import Home from './features/core/routes/home.tsx'
+import Canvas from './features/canvas/routes/index.tsx'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/canvas',
-        element: <h1>Canvas</h1>
+        element: <Canvas />
       },
     ]
   }
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>,
 )
