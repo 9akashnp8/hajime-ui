@@ -15,7 +15,7 @@ export default function Home() {
             .post('/generate?mock=True', { prompt })
             .then((res) => {
                 console.log(res)
-                dispatch.generatedElement.set(res.data["result"])
+                dispatch.generatedElement.set(res.data)
                 navigate("/canvas")
             })
     }
