@@ -3,7 +3,8 @@ import shortUUID from "short-uuid";
 import type { Template, TemplateSaveBody } from "../types.js";
 
 import { db } from "../db/index.js";
-import { mockTemplate } from "../utils/constants.js";
+import { mockHtml, mockTemplate } from "../utils/constants.js";
+import { generateCss } from "../utils/functions.js";
 
 export async function getTemplate(
   templateId: string,
@@ -25,13 +26,30 @@ export async function getTemplate(
 
 export async function saveTemplate(
   templateData: TemplateSaveBody,
-): Promise<boolean> {
+): Promise<string> {
   const templateId = shortUUID.generate();
   const result = await db
     .collection("templates")
     .insertOne({ templateId, ...templateData });
   if (result.insertedId) {
-    return true;
+    return templateId;
   }
-  return false;
+  return "";
+}
+
+export async function generateTemplate(
+  prompt: string,
+  mock: boolean = false,
+): Promise<string | null> {
+  const generatedHtml = mock ? mockHtml : ""; // Replace null with call to ai
+  const css = await generateCss(generatedHtml);
+  const templateData = {
+    html: generatedHtml,
+    styles: css,
+  };
+  const templateId = await saveTemplate(templateData);
+  if (templateId) {
+    return templateId;
+  }
+  return null;
 }
