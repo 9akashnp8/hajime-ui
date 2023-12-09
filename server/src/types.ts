@@ -3,3 +3,8 @@ export type Template = {
   html: string;
   styles: string;
 };
+
+export type TemplateSaveBody = {
+  html: string;
+  styles: string;
+};
