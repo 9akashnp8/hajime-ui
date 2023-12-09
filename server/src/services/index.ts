@@ -12,9 +12,7 @@ export async function getTemplate(
   if (mock) {
     return mockTemplate;
   }
-  const template = await db
-    .collection("templates")
-    .findOne({ template_id: templateId });
+  const template = await db.collection("templates").findOne({ templateId });
   if (template) {
     return {
       templateId: template.templateId,
