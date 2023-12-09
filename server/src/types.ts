@@ -1,5 +1,5 @@
 export type Template = {
-  id: string;
+  templateId: string;
   html: string;
   styles: string;
 };
