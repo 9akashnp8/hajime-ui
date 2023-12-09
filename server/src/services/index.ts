@@ -1,4 +1,6 @@
-import type { Template } from "../types.js";
+import shortUUID from "short-uuid";
+
+import type { Template, TemplateSaveBody } from "../types.js";
 
 import { db } from "../db/index.js";
 import { mockTemplate } from "../utils/constants.js";
@@ -21,4 +23,17 @@ export async function getTemplate(
     };
   }
   return null;
+}
+
+export async function saveTemplate(
+  templateData: TemplateSaveBody,
+): Promise<boolean> {
+  const templateId = shortUUID.generate();
+  const result = await db
+    .collection("templates")
+    .insertOne({ templateId, ...templateData });
+  if (result.insertedId) {
+    return true;
+  }
+  return false;
 }
