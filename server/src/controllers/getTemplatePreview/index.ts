@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import { createErrorResponse } from "@9akashnp8/express-response-module";
 
 import { getTemplate } from "../../services/index.js";
 import { generateCss, prepareFinalHtml } from "../../utils/functions.js";
@@ -16,7 +17,5 @@ export async function getTemplatePreviewController(
     res.set("Content-Type", "text/html");
     return res.send(finalHtml);
   }
-  return res
-    .status(404)
-    .json({ status: "fail", message: "template not found" });
+  return createErrorResponse(res, 404, "template not found");
 }
