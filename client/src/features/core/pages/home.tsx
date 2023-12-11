@@ -1,11 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 
-import { store } from "../store";
-import { axiosInstance } from "../../../utils/axios";
+import { axiosInstance } from "../../api/axios";
 
 export default function Home() {
-    const { dispatch } = store;
     const navigate = useNavigate();
     const [prompt, setPrompt] = useState("");
 
@@ -14,8 +12,6 @@ export default function Home() {
         await axiosInstance
             .post('/templates/generate?mock=True', { prompt })
             .then((res) => {
-                console.log(res)
-                dispatch.generatedElement.set(res.data)
                 const templateId = res.data.data;
                 navigate(`/template/${templateId}`)
             })
