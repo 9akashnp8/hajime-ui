@@ -1,17 +1,25 @@
-import { useEffect } from "react";
-import { useSelector } from 'react-redux'
-
-import { RootState } from "../../core/store"
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Canvas() {
-    const generatedElement = useSelector((state: RootState) => state.generatedElement);
+    const { templateId } = useParams();
+    const [ template, setTemplate ] = useState<string>("");
 
     useEffect(() => {
+        async function getTemplate() {
+            const res = await fetch(`http://localhost:3000/templates/${templateId}/preview`)
+            if (res.ok) {
+                const template = await res.text()
+                setTemplate(template);
+            }
+        }
+        getTemplate()
+
         const preview = document.createElement('iframe')
-        preview.setAttribute('srcDoc', generatedElement)
+        preview.setAttribute('srcDoc', template)
         const previewSection = document.getElementById('previewSection')!;
         previewSection.appendChild(preview);
-    }, [])
+    }, [template])
 
     return (
         <section
