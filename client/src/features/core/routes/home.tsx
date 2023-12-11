@@ -12,11 +12,12 @@ export default function Home() {
     async function handlePromptSubmit(event: React.FormEvent) {
         event.preventDefault();
         await axiosInstance
-            .post('/generate?mock=True', { prompt })
+            .post('/templates/generate?mock=True', { prompt })
             .then((res) => {
                 console.log(res)
                 dispatch.generatedElement.set(res.data)
-                navigate("/canvas")
+                const templateId = res.data.data;
+                navigate(`/template/${templateId}`)
             })
     }
     return (

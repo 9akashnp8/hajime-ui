@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: '/home',
+        path: '/',
         element: <Home />
       },
       {
-        path: '/canvas',
+        path: '/template/:templateId',
         element: <Canvas />
       },
     ]
