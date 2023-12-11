@@ -6,8 +6,8 @@ import { router } from "./routes.js";
 
 const app = Express();
 app.use(Express.json());
-app.use(router);
 app.use(cors({ origin: "*" }));
+app.use(router);
 
 const PORT = 3000;
 
