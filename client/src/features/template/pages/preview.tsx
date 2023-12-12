@@ -24,7 +24,7 @@ export default function Canvas() {
     return (
         <section
             id="previewSection"
-            className="bg-slate-100 grid place-items-center h-[calc(100vh-100px)] mt-5 rounded"
+            className="bg-slate-100 grid place-items-center h-[calc(100vh-150px)] rounded"
         ></section>
     )
 }

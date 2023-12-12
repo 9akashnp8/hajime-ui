@@ -2,7 +2,7 @@ import DarkGithubLogo from "../../../../assets/github-dark.svg";
 
 export default function NavBar() {
     return (
-        <nav>
+        <nav className="pb-4">
             <ul className="flex justify-between align-center">
                 <li className="font-bold" >v1.dev</li>
                 <li>
