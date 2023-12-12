@@ -9,6 +9,7 @@ import Root from './features/core/pages/root.tsx'
 import Home from './features/core/pages/home.tsx'
 import Canvas from './features/template/pages/preview.tsx'
 import TemplateCanvas from './features/template/pages/canvas.tsx'
+import TemplateRootPage from './features/template/pages/index.tsx'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -21,13 +22,19 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/template/:templateId',
-        element: <Canvas />
-      },
-      {
-        path: '/template/:templateId/canvas',
-        element: <TemplateCanvas />
-      },
+        path: '/template',
+        element: <TemplateRootPage />,
+        children: [
+          {
+            path: ':templateId/preview',
+            element: <Canvas />
+          },
+          {
+            path: ':templateId/canvas',
+            element: <TemplateCanvas />
+          },
+        ]
+      }
     ]
   }
 ])
