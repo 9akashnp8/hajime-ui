@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 
-import { CodeBlock } from "react-code-blocks"
+import { CopyBlock, atomOneLight } from "react-code-blocks"
 import { useEffect, useState } from "react";
 
 export default function TemplateCanvas() {
@@ -20,9 +20,10 @@ export default function TemplateCanvas() {
 
     return (
         <div className="">
-            <CodeBlock
+            <CopyBlock
                 text={templateCode}
                 language="html"
+                theme={atomOneLight}
                 showLineNumbers={false}
                 wrapLongLines
             />
