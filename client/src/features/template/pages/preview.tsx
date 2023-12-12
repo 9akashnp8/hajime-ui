@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Canvas() {
+export default function TemplatePreview() {
     const { templateId } = useParams();
     const [ template, setTemplate ] = useState<string>("");
 

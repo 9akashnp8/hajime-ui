@@ -13,7 +13,7 @@ export default function Home() {
             .post('/templates/generate?mock=True', { prompt })
             .then((res) => {
                 const templateId = res.data.data;
-                navigate(`/template/${templateId}`)
+                navigate(`/template/${templateId}/preview`)
             })
     }
     return (
