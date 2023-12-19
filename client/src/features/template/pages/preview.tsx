@@ -1,25 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export default function TemplatePreview() {
     const { templateId } = useParams();
-    const [ template, setTemplate ] = useState<string>("");
 
     useEffect(() => {
         async function getTemplate() {
             const res = await fetch(`http://localhost:3000/templates/${templateId}/preview`)
             if (res.ok) {
                 const template = await res.text()
-                setTemplate(template);
+                const preview = document.createElement('iframe')
+                preview.setAttribute('srcDoc', template)
+                const previewSection = document.getElementById('previewSection')!;
+                previewSection.appendChild(preview);
             }
         }
         getTemplate()
-
-        const preview = document.createElement('iframe')
-        preview.setAttribute('srcDoc', template)
-        const previewSection = document.getElementById('previewSection')!;
-        previewSection.appendChild(preview);
-    }, [template])
+    }, [])
 
     return (
         <section
