@@ -1,1 +1,1 @@
-# v1.dev front end repo
+# Hajime UI front end repo
