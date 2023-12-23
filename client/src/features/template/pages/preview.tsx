@@ -10,7 +10,8 @@ export default function TemplatePreview() {
             if (res.ok) {
                 const template = await res.text()
                 const preview = document.createElement('iframe')
-                preview.setAttribute('srcDoc', template)
+                const templateBlob = new Blob([template], { type: 'text/html; charset=utf-8'})
+                preview.setAttribute('src', URL.createObjectURL(templateBlob))
                 const previewSection = document.getElementById('previewSection')!;
                 previewSection.appendChild(preview);
             }
