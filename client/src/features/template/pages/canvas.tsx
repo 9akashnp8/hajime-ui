@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom"
-
-import { CopyBlock, atomOneLight } from "react-code-blocks"
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDarkReasonable } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 
 export default function TemplateCanvas() {
     const { templateId } = useParams();
@@ -19,14 +20,8 @@ export default function TemplateCanvas() {
     }, [])
 
     return (
-        <div className="">
-            <CopyBlock
-                text={templateCode}
-                language="html"
-                theme={atomOneLight}
-                showLineNumbers={false}
-                wrapLongLines
-            />
-        </div>
+        <SyntaxHighlighter language="xml" style={atomOneDarkReasonable} showLineNumbers>
+            {templateCode}
+        </SyntaxHighlighter>
     )
 }
